@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-# Create your models here.
-
-
+from django.utils import timezone
 
 
 class Company(models.Model):
@@ -65,3 +63,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class CustomerReportRecord(models.Model):
+    time_raised = models.DateTimeField(default=timezone.now, editable=False)
+    reference = models.CharField(unique=True, max_length=20)
+    description = models.TextField()
